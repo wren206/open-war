@@ -1,23 +1,6 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to
-// deal in the Software without restriction, including without limitation the
-// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-// sell copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-// IN THE SOFTWARE.
+// Torque
+// Copyright GarageGames, LLC 2011
 //-----------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
@@ -606,7 +589,9 @@ function GameCore::preparePlayer(%game, %client)
    %playerSpawnPoint = pickPlayerSpawnPoint($Game::DefaultPlayerSpawnGroups);
    // Spawn a camera for this client using the found %spawnPoint
    //%client.spawnPlayer(%playerSpawnPoint);
-   %game.spawnPlayer(%client, %playerSpawnPoint);
+   %game.spawnPlayer(%client, %playerSpawnPoint, false);
+   
+   commandToServer('overheadCam');
 
    // Starting equipment
    %game.loadOut(%client.player);
@@ -935,6 +920,18 @@ function GameCore::spawnPlayer(%game, %client, %spawnPoint, %noControl)
    // the user is unable to control the player/camera.
    if (!isDefined("%noControl"))
       %client.setControlObject(%control);
+
+    if (!isObject(Team1List))
+    {
+        new SimSet(Team1List);
+        MissionCleanup.add(Team1List);
+    }
+    
+    Team1List.add(%player);
+
+    if (%client.team $= "")
+        %client.team = 1;
+    %player.team = %client.team;
 }
 
 function GameCore::pickPointInSpawnSphere(%objectToSpawn, %spawnSphere)

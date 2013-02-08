@@ -1,23 +1,6 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to
-// deal in the Software without restriction, including without limitation the
-// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-// sell copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-// IN THE SOFTWARE.
+// Torque
+// Copyright GarageGames, LLC 2011
 //-----------------------------------------------------------------------------
 
 if ( isObject( moveMap ) )
@@ -473,6 +456,77 @@ moveMap.bind(keyboard, "alt c", toggleCamera);
 moveMap.bind( gamepad, btn_start, toggleCamera );
 moveMap.bind( gamepad, btn_x, toggleFirstPerson );
 
+function toggleCameraMode(%val)
+{
+   if (%val)
+      commandToServer('toggleCamMode');
+}
+
+moveMap.bind( keyboard, "ctrl m", toggleCameraMode);
+
+function mouseWheel(%val)
+{
+   // Weapon Cycle
+   if (%val < 0)
+      commandToServer('cycleWeapon', "next");
+   else
+      commandToServer('cycleWeapon', "prev");
+
+   // Camera Zoom
+   if(%val > 0)
+      commandToServer('adjustCamera', -1);
+   else
+      commandToServer('adjustCamera', 1);
+}
+
+moveMap.bind(mouse, "zaxis", mouseWheel);
+
+function toggleMouseLook(%val)
+{
+   if(%val)
+   {
+      if(Canvas.isCursorOn())
+         hideCursor();
+      else
+         showCursor();
+   }
+}
+
+moveMap.bind(keyboard, m, toggleMouseLook);
+
+// Spawn an AI guy when key is pressed down
+function spawnAI(%val)
+{
+   // If key was pressed down
+   if(%val)
+   {
+      // Create a new, generic AI Player
+      // Position will be at the camera's location
+      // Datablock will determine the type of actor
+      new AIPlayer() 
+      {
+         position = LocalClientConnection.camera.getPosition();
+         datablock = "DefaultPlayerData";
+      };
+   }
+}
+
+// Bind the function spawnAI to the keyboard 'b' key
+moveMap.bind(keyboard, b, spawnAI);
+
+function addSelect()
+{
+    $SelectToggled = true;
+    commandToServer('toggleMultiSelect', true);
+}
+
+function dropSelect()
+{
+    $SelectToggled = false;
+    commandToServer('toggleMultiSelect', false);
+}
+
+moveMap.bindCmd( keyboard, "ctrl x", "addSelect();", "dropSelect();" );
 // ----------------------------------------------------------------------------
 // Misc. Player stuff
 // ----------------------------------------------------------------------------
@@ -532,17 +586,8 @@ function prevWeapon(%val)
       commandToServer('cycleWeapon', "prev");
 }
 
-function mouseWheelWeaponCycle(%val)
-{
-   if (%val < 0)
-      commandToServer('cycleWeapon', "next");
-   else if (%val > 0)
-      commandToServer('cycleWeapon', "prev");
-}
-
 moveMap.bind(keyboard, q, nextWeapon);
 moveMap.bind(keyboard, "ctrl q", prevWeapon);
-moveMap.bind(mouse, "zaxis", mouseWheelWeaponCycle);
 
 //------------------------------------------------------------------------------
 // Message HUD functions

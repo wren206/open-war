@@ -1,23 +1,6 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to
-// deal in the Software without restriction, including without limitation the
-// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-// sell copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-// IN THE SOFTWARE.
+// Torque
+// Copyright GarageGames, LLC 2011
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
@@ -77,4 +60,77 @@ function refreshBottomTextCtrl()
 function refreshCenterTextCtrl()
 {
    CenterPrintText.position = "0 0";
+}
+
+// onMouseDown is called when the left mouse
+// button is clicked in the scene
+// %pos is the screen (pixel) coordinates of the mouse click
+// %start is the world coordinates of the camera
+// %ray is a vector through the viewing 
+// frustum corresponding to the clicked pixel
+function PlayGui::onMouseDown(%this, %pos, %start, %ray)
+{
+    // If we're in building placement mode ask the server to create a building for
+    // us at the point that we clicked.
+    if (%this.placingBuilding == true)
+    {
+        // Request a building at the clicked coordinates from the server.
+        commandToServer(%this.building, %pos, %start, %ray);
+
+        // Clear the building placement flag.
+        %this.placingBuilding = false;
+    }
+    else
+    {
+        // Ask the server to let us attack a target at the clicked position.
+        commandToServer('checkTarget', %pos, %start, %ray);
+    }
+}
+
+// This function is the callback that handles our new button.  When you click it
+// the button tells the PlayGui that we're now in building placement mode.
+function orcBurrowButton::onClick(%this)
+{
+    PlayGui.building = 'createBuilding_commandtent';
+    PlayGui.placingBuilding = true;
+}
+
+// onRightMouseDown is called when the right mouse
+// button is clicked in the scene
+// %pos is the screen (pixel) coordinates of the mouse click
+// %start is the world coordinates of the camera
+// %ray is a vector through the viewing 
+// frustum corresponding to the clicked pixel
+function PlayGui::onRightMouseDown(%this, %pos, %start, %ray)
+{   
+   commandToServer('movePlayer', %pos, %start, %ray);
+
+    %ray = VectorScale(%ray, 1000);
+    %end = VectorAdd(%start, %ray);
+
+    // only care about terrain objects
+    %searchMasks = $TypeMasks::TerrainObjectType | $TypeMasks::StaticTSObjectType | 
+        $TypeMasks::InteriorObjectType | $TypeMasks::ShapeBaseObjectType |
+        $TypeMasks::StaticObjectType;
+
+    // search!
+    %scanTarg = ContainerRayCast( %start, %end, %searchMasks);
+
+    if (%scanTarg)
+    {
+        // Get access to the AI player we control
+        %ai = LocalClientConnection.player;
+
+        // Get the X,Y,Z position of where we clicked
+        %pos = getWords(%scanTarg, 1, 3);
+
+        // Get the normal of the location we clicked on
+        %norm = getWords(%scanTarg, 4, 6);
+
+        // Create a new decal using the decal manager
+        // arguments are (Position, Normal, Rotation, Scale, Datablock, Permanent)
+        // AddDecal will return an ID of the new decal, which we will
+        // store in the player
+        decalManagerAddDecal(%pos, %norm, 0, 1, "ScorchBigDecal", false);
+    }
 }
