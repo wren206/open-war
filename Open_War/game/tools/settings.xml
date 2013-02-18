@@ -1,2 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<EditorSettings />
+<EditorSettings>
+    <Group name="GuiEditor">
+        <Setting name="previewResolution">1024 768</Setting>
+        <Group name="Help">
+            <Setting name="documentationLocal">../../../Documentation/Official Documentation.html</Setting>
+            <Setting name="documentationReference">../../../Documentation/Torque 3D - Script Manual.chm</Setting>
+            <Setting name="documentationURL">http://www.garagegames.com/products/torque-3d/documentation/user</Setting>
+        </Group>
+        <Group name="Snapping">
+            <Setting name="snap2Grid">0</Setting>
+            <Setting name="snap2GridSize">8</Setting>
+            <Setting name="sensitivity">2</Setting>
+            <Setting name="snapToCenters">1</Setting>
+            <Setting name="snapToCanvas">1</Setting>
+            <Setting name="snapToControls">1</Setting>
+            <Setting name="snapToGuides">1</Setting>
+            <Setting name="snapToEdges">1</Setting>
+        </Group>
+        <Group name="EngineDevelopment">
+            <Setting name="showEditorGuis">0</Setting>
+            <Setting name="toggleIntoEditor">0</Setting>
+            <Setting name="showEditorProfiles">0</Setting>
+        </Group>
+        <Group name="Rendering">
+            <Setting name="drawGuides">1</Setting>
+            <Setting name="drawBorderLines">1</Setting>
+        </Group>
+        <Group name="Selection">
+            <Setting name="fullBox">0</Setting>
+        </Group>
+        <Group name="Library">
+            <Setting name="viewType">Categorized</Setting>
+        </Group>
+    </Group>
+</EditorSettings>

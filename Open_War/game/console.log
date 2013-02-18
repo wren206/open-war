@@ -1,4 +1,4 @@
-//-------------------------- 2/8/2013 -- 17:52:52 -----
+//-------------------------- 2/18/2013 -- 10:02:45 -----
 Processor Init:
    AMD (unknown), ~1.40 Ghz
    FPU detected
@@ -95,9 +95,9 @@ Accepted Mode:
 --Refresh Rate : 60
 --FSAA Level : 4
 --------------
-GFXPCD3D9Device::reset - depthstencil 1e167a0 has 2 ref's
+GFXPCD3D9Device::reset - depthstencil 5067a0 has 2 ref's
 --- Resetting D3D Device ---
-GFXPCD3D9Device::reset - depthstencil 4b32020 has 2 ref's
+GFXPCD3D9Device::reset - depthstencil 4a52020 has 2 ref's
 --- Resetting D3D Device ---
 art/shapes/weapons/SwarmGun/materials.cs (23): Cannot re-declare object [w_swarmgun].
 Binding server port to default IP
@@ -121,15 +121,12 @@ UDP initialized on port 0
  - Initializing Road and Path Editor
  % - Initializing Shape Editor
 Engine initialized...
-Win32Window::WindowProc - resetting device due to window size change.
-GFXPCD3D9Device::reset - depthstencil 1e1fca0 has 2 ref's
+Window focus status changed: focus: 1
+GFXPCD3D9Device::reset - depthstencil 50fca0 has 2 ref's
 --- Resetting D3D Device ---
-GFXPCD3D9Device::reset - depthstencil 4b31a40 has 2 ref's
---- Resetting D3D Device ---
-GFXPCD3D9Device::reset - depthstencil 4b31a40 has 2 ref's
+GFXPCD3D9Device::reset - depthstencil 4a51a40 has 2 ref's
 --- Resetting D3D Device ---
 AntiAliasing has been disabled; it is not compatible with AdvancedLighting.
-Window focus status changed: focus: 1
 Exporting server prefs...
 Starting multiplayer mode
 Binding server port to default IP
@@ -161,17 +158,14 @@ Missing file: art/datablocks/vehicles/cheetahCar.cs!
 Game -> activatePackages
 *** Mission loaded
 Connect request from: 
-Connection established 4282
-CADD: 4283 local
+Connection established 4287
+CADD: 4288 local
 *** Sending mission load to client: levels/Empty Terrain.mis
 Mapping string: ServerMessage to index: 0
 Mapping string: MsgConnectionError to index: 1
 Mapping string: MsgLoadInfo to index: 2
 Mapping string: MsgLoadDescripition to index: 3
 Sending heartbeat to master server [IP:209.90.70.74:28002]
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-Win32Window::WindowProc - resetting device due to window size change.
 Mapping string: MsgLoadInfoDone to index: 4
 Mapping string: MissionStartPhase1 to index: 5
 *** New Mission: levels/Empty Terrain.mis
@@ -205,78 +199,26 @@ Mapping string: overheadCam to index: 3
 *** Initial Control Object
 Activating DirectInput...
 *** Control Object Changed
-Mapping string: DarkBlue to index: 15
+Mapping string:  to index: 15
 Mapping string: setNumericalHealthHUD to index: 16
-Mapping string: checkTarget to index: 4
+Window focus status changed: focus: 0
+  Using background sleep time: 200
+Win32Window::WindowProc - resetting device due to window size change.
+GFXPCD3D9Device::reset - depthstencil 4a51a40 has 2 ref's
+--- Resetting D3D Device ---
+DirectInput deactivated.
+Activating DirectInput...
 Window focus status changed: focus: 1
+Mapping string: createBuilding_orcburrow to index: 4
+[MaterialList::mapMaterials] Creating missing material for texture: art/shapes/orcburrow/orcburrow_d
+[MaterialList::mapMaterials] Creating missing material for texture: art/shapes/orcburrow/orcburrow_sail
 Mapping string: cycleWeapon to index: 5
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-DirectInput deactivated.
-Received info request from a master server [IP:209.90.70.74:28002].
-Received info request from a master server [IP:209.90.70.74:28002].
-Sending heartbeat to master server [IP:209.90.70.74:28002]
-Received info request from a master server [IP:209.90.70.74:28002].
-Activating DirectInput...
-Window focus status changed: focus: 1
-Mapping string: ToggleCamera to index: 6
-*** Control Object Changed
-*** Control Object Changed
-*** Control Object Changed
-Mapping string: movePlayer to index: 7
-*** Control Object Changed
-*** Control Object Changed
-*** Control Object Changed
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-DirectInput deactivated.
-Activating DirectInput...
-Window focus status changed: focus: 1
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-DirectInput deactivated.
-Received info request from a master server [IP:209.90.70.74:28002].
-Activating DirectInput...
-Window focus status changed: focus: 1
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-DirectInput deactivated.
-Activating DirectInput...
-Window focus status changed: focus: 1
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-DirectInput deactivated.
-Activating DirectInput...
-Window focus status changed: focus: 1
-Sending heartbeat to master server [IP:209.90.70.74:28002]
-*** Control Object Changed
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-DirectInput deactivated.
-Win32Window::WindowProc - resetting device due to window size change.
-Activating DirectInput...
-Window focus status changed: focus: 1
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-DirectInput deactivated.
-Received info request from a master server [IP:209.90.70.74:28002].
-Received info request from a master server [IP:209.90.70.74:28002].
-Win32Window::WindowProc - resetting device due to window size change.
-Activating DirectInput...
-Window focus status changed: focus: 1
-*** Control Object Changed
-*** Control Object Changed
-*** Control Object Changed
-Window focus status changed: focus: 0
-  Using background sleep time: 200
-DirectInput deactivated.
-Sending heartbeat to master server [IP:209.90.70.74:28002]
-Received info request from a master server [IP:209.90.70.74:28002].
-Activating DirectInput...
-Window focus status changed: focus: 1
+Mapping string: adjustCamera to index: 6
+Mapping string: checkTarget to index: 7
+Mapping string: movePlayer to index: 8
 *** ENDING MISSION
-4281 -> deactivatePackages
-CDROP: 4283 
+4286 -> deactivatePackages
+CDROP: 4288 
 Exporting server prefs...
 Exporting client prefs
 Exporting server prefs

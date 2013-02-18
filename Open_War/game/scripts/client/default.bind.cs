@@ -94,18 +94,12 @@ function movebackward(%val)
 
 function moveup(%val)
 {
-   %object = ServerConnection.getControlObject();
-   
-   if(%object.isInNamespaceHierarchy("Camera"))
-      $mvUpAction = %val * $movementSpeed;
+   $mvUpAction = %val * $movementSpeed;
 }
 
 function movedown(%val)
 {
-   %object = ServerConnection.getControlObject();
-   
-   if(%object.isInNamespaceHierarchy("Camera"))
-      $mvDownAction = %val * $movementSpeed;
+   $mvDownAction = %val * $movementSpeed;
 }
 
 function turnLeft( %val )

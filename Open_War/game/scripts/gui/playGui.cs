@@ -91,8 +91,58 @@ function PlayGui::onMouseDown(%this, %pos, %start, %ray)
 // the button tells the PlayGui that we're now in building placement mode.
 function orcBurrowButton::onClick(%this)
 {
+    PlayGui.building = 'createBuilding_orcburrow';
+    PlayGui.placingBuilding = true;
+}
+
+function testButton::onClick(%this)
+{
     PlayGui.building = 'createBuilding_commandtent';
     PlayGui.placingBuilding = true;
+}
+
+//Camera Right
+function GuiMouseRight::onMouseEnter(%this,%modifier,%mousePoint,%mouseClickCount)
+{
+    $mvRightAction = $movementSpeed;
+}
+
+function GuiMouseRight::onMouseLeave(%this,%modifier,%mousePoint,%mouseClickCount)
+{
+    $mvRightAction = 0;
+}
+
+//Camera Left
+function GuiMouseLeft::onMouseEnter(%this,%modifier,%mousePoint,%mouseClickCount)
+{
+    $mvLeftAction = $movementSpeed;
+}
+
+function GuiMouseLeft::onMouseLeave(%this,%modifier,%mousePoint,%mouseClickCount)
+{
+    $mvLeftAction = 0;
+}
+
+//Camera Up
+function GuiMouseTop::onMouseEnter(%this,%modifier,%mousePoint,%mouseClickCount)
+{
+    $mvForwardAction = $movementSpeed;
+}
+
+function GuiMouseTop::onMouseLeave(%this,%modifier,%mousePoint,%mouseClickCount)
+{
+    $mvForwardAction = 0;
+}
+
+//Camera Down
+function GuiMouseBottom::onMouseEnter(%this,%modifier,%mousePoint,%mouseClickCount)
+{
+    $mvBackwardAction = $movementSpeed;
+}
+
+function GuiMouseBottom::onMouseLeave(%this,%modifier,%mousePoint,%mouseClickCount)
+{
+    $mvBackwardAction = 0;
 }
 
 // onRightMouseDown is called when the right mouse

@@ -22,9 +22,11 @@
    isContainer = "1";
    canSave = "1";
    canSaveDynamicFields = "1";
+      building = "\c038";
       enabled = "1";
       helpTag = "0";
       noCursor = "0";
+      placingBuilding = "0";
 
    new GuiBitmapCtrl(centerPrintDlg) {
       bitmap = "art/gui/hudfill.png";
@@ -291,7 +293,7 @@
          canSaveDynamicFields = "0";
       };
       new GuiTextCtrl(numericalHealthHUD) {
-         text = "96";
+         text = "100";
          maxLength = "255";
          margin = "0 0 0 0";
          padding = "0 0 0 0";
@@ -347,6 +349,88 @@
       horizSizing = "relative";
       vertSizing = "relative";
       profile = "GuiDefaultProfile";
+      visible = "1";
+      active = "1";
+      tooltipProfile = "GuiToolTipProfile";
+      hovertime = "1000";
+      isContainer = "0";
+      canSave = "1";
+      canSaveDynamicFields = "0";
+   };
+   new GuiMouseEventCtrl(GuiMouseRight) {
+      lockMouse = "0";
+      position = "960 180";
+      extent = "64 255";
+      minExtent = "8 2";
+      horizSizing = "right";
+      vertSizing = "bottom";
+      profile = "GuiDefaultProfile";
+      visible = "1";
+      active = "1";
+      tooltipProfile = "GuiToolTipProfile";
+      hovertime = "1000";
+      isContainer = "0";
+      canSave = "1";
+      canSaveDynamicFields = "0";
+   };
+   new GuiMouseEventCtrl(GuiMouseTop) {
+      lockMouse = "0";
+      position = "950 160";
+      extent = "64 64";
+      minExtent = "8 2";
+      horizSizing = "right";
+      vertSizing = "bottom";
+      profile = "GuiDefaultProfile";
+      visible = "1";
+      active = "1";
+      tooltipProfile = "GuiToolTipProfile";
+      hovertime = "1000";
+      isContainer = "0";
+      canSave = "1";
+      canSaveDynamicFields = "0";
+   };
+   new GuiMouseEventCtrl(GuiMouseBottom) {
+      lockMouse = "0";
+      position = "928 389";
+      extent = "64 64";
+      minExtent = "8 2";
+      horizSizing = "right";
+      vertSizing = "bottom";
+      profile = "GuiDefaultProfile";
+      visible = "1";
+      active = "1";
+      tooltipProfile = "GuiToolTipProfile";
+      hovertime = "1000";
+      isContainer = "0";
+      canSave = "1";
+      canSaveDynamicFields = "0";
+   };
+   new GuiMouseEventCtrl(GuiMouseLeft) {
+      lockMouse = "0";
+      position = "0 162";
+      extent = "64 331";
+      minExtent = "8 2";
+      horizSizing = "right";
+      vertSizing = "bottom";
+      profile = "GuiDefaultProfile";
+      visible = "1";
+      active = "1";
+      tooltipProfile = "GuiToolTipProfile";
+      hovertime = "1000";
+      isContainer = "0";
+      canSave = "1";
+      canSaveDynamicFields = "0";
+   };
+   new GuiButtonCtrl(testButton) {
+      groupNum = "-1";
+      buttonType = "PushButton";
+      useMouseEvents = "0";
+      position = "964 295";
+      extent = "30 30";
+      minExtent = "8 2";
+      horizSizing = "right";
+      vertSizing = "bottom";
+      profile = "GuiButtonProfile";
       visible = "1";
       active = "1";
       tooltipProfile = "GuiToolTipProfile";
